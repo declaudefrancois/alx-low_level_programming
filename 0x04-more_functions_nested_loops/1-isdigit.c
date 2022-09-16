@@ -1,8 +1,9 @@
 /**
  * _isdigit - check if a int represent a number
  *
- * Return: 0 or 1.
+ * @c: the number to check
  *
+ * Return: int 0 or 1.
  */
 int _isdigit(int c)
 {
@@ -11,3 +12,4 @@ int _isdigit(int c)
 
 	return (0);
 }
+

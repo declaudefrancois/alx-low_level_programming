@@ -1,5 +1,6 @@
 /**
  * _isupper - check if a string is uppercase
+ * @c: the char to check
  *
  * Return: 0 or 1.
  */
