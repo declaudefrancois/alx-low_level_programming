@@ -12,27 +12,19 @@ int first_dec(int n);
  */
 int main(void)
 {
-	double fib_v;
-	int i = 2;
-	int count = 0, first;
+	unsigned int fib_v;
+	int i = 1;
 
 	do {
 		fib_v = fib(i);
-		first = first_dec((int) fib_v);
-		printf("%f", fib_v);
 
-		if (first == 1 || first == 2)
-		{
-			if (count != 98)
-				printf("%d, ",(int) fib_v);
-			else
-				printf("%d", (int) fib_v);
+		if (i != 98)
+			printf("%d, ", fib_v);
+		else
+			printf("%d\n", fib_v);
 
-			count++;
-		}	
-		
 		i++;
-	} while (count <= 98);
+	} while (i <= 98);
 
 	return (0);
 }
