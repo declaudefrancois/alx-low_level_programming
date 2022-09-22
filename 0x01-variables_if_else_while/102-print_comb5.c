@@ -7,31 +7,48 @@
  */
 int main(void)
 {
-	int i = 0;
+	int i, j;
+	char c1, c10, c2, c20;
 
-	while (i < 100)
+	for (i = 0; i < 99; i++)
 	{
-		if (i > 10)
+		for (j = 0; j < 100; j++)
 		{
-			putchar(i / 10 + '0');
-			putchar(i % 10 + '0');
-		}
-		else
-		{
-			putchar('0');
-			putchar(i + '0');
-		}
+			if (i < 10)
+			{
+				c1 = '0';
+				c10 = i + '0';
+			}
+			else
+			{
+				c1 = i / 10 + '0';
+				c10 = i % 10 + '0';
+			}
 
-		if (i != 99)
-		{
-			putchar(',');
+			putchar(c1);
+			putchar(c10);
 			putchar(' ');
+
+			if (j < 10)
+			{
+				c2 = '0';
+				c20 = j + '0';
+			}
+			else
+			{
+				c2 = j / 10 + '0';
+				c20 = j % 10 + '0';
+			}
+			putchar(c2);
+			putchar(c20);
+
+			if (!(i == 98 && j == 99))
+			{
+				putchar(',');
+				putchar(' ');
+			}
 		}
-		else
-			putchar('\n');
-
-		i++;
 	}
-
+	putchar('\n');
 	return (0);
 }
