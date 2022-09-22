@@ -11,8 +11,8 @@ int main(void)
 	char part1[] = "and that piece of art is useful\"";
 	char part2[] = " - Dora Korpar, 2015-10-19\n";
 
-	write(1, part1, 33);
-	write(1, part2, 29);
+	write(1, part1, 31);
+	write(1, part2, 28);
 	return (1);
 }
 
