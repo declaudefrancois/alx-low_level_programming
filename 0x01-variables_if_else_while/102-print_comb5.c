@@ -7,12 +7,12 @@
  */
 int main(void)
 {
-	int i, j;
+	int i = 0, j;
 	int c1, c10, c2, c20;
 
-	for (i = 0; i < 99; i++)
+	while (i < 99)
 	{
-		for (j = 0; j < 100; j++)
+		for (j = i + 1; j < 100; j++)
 		{
 			if (i < 10)
 			{
@@ -47,6 +47,9 @@ int main(void)
 				putchar(',');
 				putchar(' ');
 			}
+
+			if (j == 99)
+				i++;
 		}
 	}
 	putchar('\n');
