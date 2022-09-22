@@ -14,31 +14,16 @@ int main(void)
 	{
 		for (j = i + 1; j < 100; j++)
 		{
-			if (i < 10)
-			{
-				c1 = (int) '0';
-				c10 = (int) (i + '0');
-			}
-			else
-			{
-				c1 = (int) (i / 10 + '0');
-				c10 = (int) (i % 10 + '0');
-			}
+			c1 = i < 10 ? (int) '0' : (int) (i / 10 + '0');
+			c10 = i < 10 ? (int) (i + '0') : (int) (i % 10 + '0');
 
 			putchar(c1);
 			putchar(c10);
 			putchar(' ');
 
-			if (j < 10)
-			{
-				c2 = (int) '0';
-				c20 = (int) j + '0';
-			}
-			else
-			{
-				c2 = (int) (j / 10 + '0');
-				c20 =(int) (j % 10 + '0');
-			}
+			c2 = j < 10 ? (int) '0' : (int) (j / 10 + '0');
+			c20 = j < 10 ? (int) (j + '0') : (int) (j % 10 + '0');
+
 			putchar(c2);
 			putchar(c20);
 
