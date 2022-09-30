@@ -1,6 +1,4 @@
-#include <unistd.h>
-
-int _putchar(char c);
+#include <stdio.h>
 
 /**
  * main - a program that prints its name.
@@ -11,29 +9,9 @@ int _putchar(char c);
  */
 int main(int argc, char *argv[])
 {
-	char *name = argv[0];
-	int i = 0;
-
-	while (name[i] != '\0')
-	{
-		_putchar(name[i]);
-		i++;
-	}
-
+	printf("%s\n", argv[0]);
 	(void) argc;
-	_putchar('\n');
 
 	return (0);
 }
 
-/**
- * _putchar - writes the character c to stdout
- * @c: The character to print
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
- */
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
