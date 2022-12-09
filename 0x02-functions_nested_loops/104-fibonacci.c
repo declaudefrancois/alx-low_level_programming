@@ -12,16 +12,16 @@ int first_dec(int n);
  */
 int main(void)
 {
-	unsigned int fib_v;
+	unsigned long int fib_v;
 	int i = 1;
 
 	do {
 		fib_v = fib(i);
 
 		if (i != 98)
-			printf("%d, ", fib_v);
+			printf("%ld, ", fib_v);
 		else
-			printf("%d\n", fib_v);
+			printf("%ld\n", fib_v);
 
 		i++;
 	} while (i <= 98);
