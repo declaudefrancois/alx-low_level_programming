@@ -1,0 +1,12 @@
+.DEFAULT_GOAL := all
+
+CC = gcc
+SRC = main.c school.c
+OBJ = $(shell echo $(SRC) | sed -re 's/\.c/\.o/g')
+NAME = school
+
+all: $(OBJ)
+	$(CC) $^ -o $(NAME)
+
+%.o: %.c
+	$(CC) -c -o $@ $<
