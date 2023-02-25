@@ -19,7 +19,7 @@ void _hash_table_print(const hash_table_t *ht)
 			if (n)
 				printf(", ");
 			printf("'%s': '%s'", p->key, p->value);
-			p = p-> next;
+			p = p->next;
 			n = 1;
 		}
 		printf("\n");
