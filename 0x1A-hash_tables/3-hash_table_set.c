@@ -19,6 +19,9 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	int idx;
 	hash_node_t *item;
 
+	if (ht == NULL)
+		return (0);
+
 	item = malloc(sizeof(item));
 	if (item == NULL)
 		return (0);
