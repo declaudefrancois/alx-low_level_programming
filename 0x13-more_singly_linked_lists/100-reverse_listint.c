@@ -4,12 +4,12 @@
  * reverse_listint -  reverses a listint_t linked list.
  *
  * @head: A double pointer to the head of the list.
- * Returns: a pointer to the head of the reversed list.
+ * Return: a pointer to the head of the reversed list.
  */
 listint_t *reverse_listint(listint_t **head)
 {
 	listint_t *tmp, *tmp1;
-	
+
 	if (!head)
 		return (NULL);
 

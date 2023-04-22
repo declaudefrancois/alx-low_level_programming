@@ -18,11 +18,9 @@ int main(void)
 	do {
 		fib_v = fib(i);
 
-		if (i != 98)
-			printf("%ld, ", fib_v);
-		else
-			printf("%ld\n", fib_v);
-
+		printf("%ld%s", fib_v, i != 98 ? ", " : "");
+		if (i == 98)
+			printf("\n");
 		i++;
 	} while (i <= 98);
 
