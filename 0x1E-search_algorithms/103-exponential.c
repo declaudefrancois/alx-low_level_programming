@@ -49,7 +49,7 @@ int binary_search_bound(int *array, size_t min, size_t max, int value)
 		return (-1);
 
 	left_idx = min;
-	right_idx = max - 1;
+	right_idx = max;
 	while (left_idx <= right_idx)
 	{
 		print_array(array, left_idx, right_idx);
