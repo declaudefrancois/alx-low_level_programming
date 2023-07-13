@@ -1,5 +1,4 @@
 #include "search_algos.h"
-#include <math.h>
 
 int binary_reccursive(int *array, size_t low, size_t high, int value);
 
@@ -41,7 +40,7 @@ int binary_reccursive(int *array, size_t low, size_t high, int value)
 	print_array(array, low, high);
 	if (high > low)
 	{
-		mid = floor((low + high) / 2);
+		mid = (low + high) / 2;
 		if (array[mid] < value)
 			return (binary_reccursive(array, mid + 1,  high, value));
 		else
