@@ -28,7 +28,7 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 	k = sqrt(size);
 	low = list;
 	high = kth_node(low, min(k, size) - 1);
-	while (high && high->n < value && k < size)
+	while (high && high->n < value && k < size - 1)
 	{
 		printf("Value checked at index [%ld] = [%d]\n", high->index, high->n);
 		low = high;
