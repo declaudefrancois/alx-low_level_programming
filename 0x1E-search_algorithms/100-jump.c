@@ -1,6 +1,10 @@
 #include <math.h>
 #include "search_algos.h"
 
+
+size_t min(size_t a, size_t b);
+
+
 /**
  * jump_search - searches for a value in a sorted array of integers
  *               using the Jump search algorithm.
@@ -14,38 +18,50 @@
  */
 int jump_search(int *array, size_t size, int value)
 {
-	size_t i, j, m, min_msize;
+	size_t low, high;
+	const size_t k = sqrt(size);
 
 	if (array == NULL)
 		return (-1);
 
-	i = 0;
-	m = sqrt(size);
-	printf("Value checked array[%ld] = [%d]\n", i, array[i]);
-	while (array[min_msize - 1] < value)
+	high = k;
+	low = 0;
+	while (size > 0 && array[min(high, size) - 1] < value)
 	{
-		if (i > 0)
-			printf("Value checked array[%ld] = [%d]\n", i, array[i]);
-		i = m;
-		m += sqrt(size);
-		if (i >= size)
+		printf("Value checked array[%ld] = [%d]\n", low, array[low]);
+		low = high;
+		high += k;
+		if (low >= size)
 		{
-			printf("Value found between indexes [%ld] and [%ld]\n", i, m);
+			printf("Value found between indexes [%ld] and [%ld]\n", low, high);
 			return (-1);
 		}
-		min_msize = m > size ? size : m;
+		if (array[min(high, size) - 1] >= value)
+			printf("Value checked array[%ld] = [%d]\n", low, array[low]);
 	}
 
-	printf("Value found between indexes [%ld] and [%ld]\n", i, m);
-
-	j = i;
-	while (array[j] <= value)
+	printf("Value found between indexes [%ld] and [%ld]\n", low, high);
+	while (array[low] <= value)
 	{
-		printf("Value checked array[%ld] = [%d]\n", j, array[j]);
-		if (array[j] == value)
-			return (j);
-		j++;
+		printf("Value checked array[%ld] = [%d]\n", low, array[low]);
+		if (array[low] == value)
+			return (low);
+		low++;
 	}
 
 	return (-1);
+}
+
+
+/**
+ * min - Return the minimum of two numbers.
+ *
+ * @a: First number.
+ * @b: Second number.
+ *
+ * Return: The smalest between a and b.
+ */
+size_t min(size_t a, size_t b)
+{
+	return (a < b ? a : b);
 }
