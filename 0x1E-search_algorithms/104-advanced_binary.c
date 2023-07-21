@@ -38,6 +38,9 @@ int binary_reccursive(int *array, size_t low, size_t high, int value)
 	size_t mid;
 
 	print_array(array, low, high);
+	if (array[low] == value)
+		return (low);
+
 	if (high > low)
 	{
 		mid = (low + high) / 2;
@@ -47,8 +50,6 @@ int binary_reccursive(int *array, size_t low, size_t high, int value)
 			return (binary_reccursive(array, low, mid, value));
 	}
 
-	if (array[low] == value)
-		return (low);
 	return (-1);
 }
 
