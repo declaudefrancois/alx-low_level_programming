@@ -36,6 +36,9 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 		high = kth_node(low, min(k, size) - 1);
 		if (high == NULL)
 			return (NULL);
+		if (!high || high->n > value)
+			printf("Value checked at index [%ld] = [%d]\n", high->index, high->n);
+
 	}
 
 	if (low && low->n < value)
