@@ -19,5 +19,8 @@ int main(void)
 	n = 98;
 	set_bit(&n, 0);
 	printf("%lu\n", n);
+	n = 2048;
+	set_bit(&n, 2000);
+	printf("%lu\n", n);
 	return (0);
 }
