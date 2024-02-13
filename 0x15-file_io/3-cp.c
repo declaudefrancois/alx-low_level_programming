@@ -1,5 +1,58 @@
 #include "main.h"
 
+
+/**
+ * open_destination - Open the destination file and return the
+ *                    file descriptor if success.
+ *
+ * @path: The path to the file to open.
+ *
+ * Return: The file descriptor.
+ */
+int open_destination(const char *path)
+{
+	int fd;
+
+	fd = open(path,
+			O_CREAT | O_WRONLY | O_TRUNC,
+			S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
+	if (fd == -1)
+	{
+		dprintf(STDERR_FILENO,
+				"Error: Can't write to %s\n",
+				path);
+		exit(99);
+	}
+
+	return (fd);
+}
+
+
+/**
+ * open_source - Open the source file and return the
+ *               file descriptor if success.
+ *
+ * @path: The path to the file to open.
+ * Return: The file descriptor.
+ */
+int open_source(const char *path)
+{
+	int fd;
+
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
+	{
+		dprintf(STDERR_FILENO,
+				"Error: Can't read from file %s\n",
+				path);
+		exit(99);
+	}
+
+	return (fd);
+}
+
+
+
 /**
  * main - Copies the content of a file to another file.
  * @argc: Arguments count.
@@ -18,38 +71,27 @@ int  main(int argc, char **argv)
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
-	fdSource = open(argv[1], O_RDONLY);
-	if (fdSource == -1)
-	{
-		dprintf(STDERR_FILENO,
-		      "Error: Can't read from file %s\n",
-		      argv[1]);
-		exit(98);
-	}
-	fdDestination = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 664);
-	if (fdDestination == -1)
-	{
-		closeFd(fdSource);
-		dprintf(STDERR_FILENO,
-		      "Error: Can't write to %s\n",
-		      argv[2]);
-		exit(99);
-	}
+
+	fdSource = open_source(argv[1]);
+	fdDestination = open_destination(argv[2]);
 	readBytesCount = read(fdSource, buffer, BUFF_SIZE);
+
 	if (readBytesCount == -1)
 	{
 		closeFd(fdSource);
 		closeFd(fdDestination);
 		dprintf(STDERR_FILENO,
-			"Error: Can't read from file %s\n",
-			argv[1]);
+				"Error: Can't read from file %s\n",
+				argv[1]);
 		exit(98);
 	}
+
 	while (readBytesCount > 0)
 	{
 		write(fdDestination, buffer, readBytesCount);
 		readBytesCount = read(fdSource, buffer, BUFF_SIZE);
 	}
+
 	closeFd(fdSource);
 	closeFd(fdDestination);
 	return (EXIT_SUCCESS);
