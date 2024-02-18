@@ -88,18 +88,23 @@ void print_elf_header(int fd)
 	print_elf_os_abi(headers);
 	print_elf_abi_version(headers);
 	print_elf_type(headers);
-	print_elf_machine(headers);
-	print_elf_version_1(headers);
+	/*
+	 * print_elf_machine(headers);
+	 * print_elf_version_1(headers);
+	 */
 	print_elf_entry_point(headers);
-	print_elf_start_of_prog(headers);
-	print_elf_start_of_section(headers);
-	print_elf_flags(headers);
-	print_elf_size(headers);
-	print_elf_size_of_prog_headers(headers);
-	print_elf_num_prog_headers(headers);
-	print_elf_size_of_section_headers(headers);
-	print_elf_num_section_headers(headers);
-	print_elf_num_section_header_tb_idx(headers);
+
+	/*
+	 * print_elf_start_of_prog(headers);
+	 * print_elf_start_of_section(headers);
+	 * print_elf_flags(headers);
+	 * print_elf_size(headers);
+	 * print_elf_size_of_prog_headers(headers);
+	 * print_elf_num_prog_headers(headers);
+	 * print_elf_size_of_section_headers(headers);
+	 * print_elf_num_section_headers(headers);
+	 * print_elf_num_section_header_tb_idx(headers);
+	 */
 }
 
 
@@ -150,8 +155,11 @@ void print_elf_data(const char *headers)
  */
 void print_elf_version(const char *headers)
 {
+	int e_version;
+
+	e_version = read_bytes(headers, 20, 23);
 	printf("  Version:                           ");
-	printf("%d%s\n", headers[6], headers[6] == 1 ? " (current)" : "");
+	printf("%d%s\n", headers[6], e_version == EV_CURRENT ? " (current)" : "");
 }
 
 /**
@@ -162,7 +170,7 @@ void print_elf_os_abi(const char *headers)
 {
 	printf("  OS/ABI:                            ");
 	if (headers[7] > 0x12)
-		printf("INVALID\n");
+		printf("<unknown: %d>\n", headers[7]);
 	else
 		printf("%s\n", OS_ABI[headers[7] & 0xFF]);
 }
