@@ -33,8 +33,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	item->value = malloc((strlen(value) + 1) * sizeof(char));
 	if (item->value == NULL)
 	{
-		if (item->key != NULL)
-			free(item->key);
+		free(item->key);
 		free(item);
 		return (0);
 	}
@@ -46,10 +45,12 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	{
 		if (strcmp(tmp->key, key) == 0)
 		{
+			free(tmp->value);
+			free(item->key);
 			tmp->value = item->value;
+			free(item);
 			return (1);
 		}
-
 		tmp = tmp->next;
 	}
 	item->next = ht->array[idx];
